@@ -1,0 +1,32 @@
+openapi: "3.0.2"
+info:
+  version: 1.0.0
+  title: MathJS Calculator
+  license:
+    name: MIT
+servers:    
+  - url: http://api.mathjs.org/v4
+paths:
+  /:
+    get:
+      summary: Evaluating math.
+      parameters:
+        - name: expr
+          in: query
+          description: The expression to be evaluated. The expression must be url encoded.
+          required: true
+          schema:
+            type: string
+            format: string
+        - name: precision
+          in: query
+          description: Number of significant digits in formatted output. Undefined by default.
+          required: false
+          schema:
+            type: number
+            format: int32
+      responses:
+        200:
+          description: Body contains the result of the expression
+        400:
+          description: Error message in the body
